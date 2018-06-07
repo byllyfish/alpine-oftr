@@ -22,7 +22,8 @@ echo 'build ALL=(ALL) NOPASSWD: ALL' | EDITOR='tee -a' visudo
 # Switch to the build user.
 
 sudo -H -u build /bin/sh <<EOF
-cd $HOME
+cd /home/build
+cp /build-src/APKBUILD .
 
 # Generate a disposable public/private key pair. The private
 # key will be used to sign the APKINDEX, but we throw away that
@@ -39,5 +40,5 @@ abuild -r
 
 EOF
 
-# The resulting packages are stored in "/home/build/packages/build/$ARCH/*.apk"
+# The resulting packages are stored in "/home/build/packages/home/$ARCH/*.apk"
 # We ignore the index file named "APKINDEX.tar.gz".
