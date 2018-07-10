@@ -15,4 +15,4 @@ deploy:
   skip_cleanup: true
   on:
     repo: byllyfish/alpine-oftr
-
+    tags: true
