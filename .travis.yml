@@ -1,22 +1,18 @@
 sudo: required
-
-language: ruby    # default (travis lint)
-
+language: ruby
 services:
-  - docker
-
+- docker
 script:
-  - docker build -t alpine-oftr -f Dockerfile .
-  - docker run --name build-oftr alpine-oftr
-  - docker ps -a
-  - docker cp build-oftr:/build-src/output/oftr-0.50.0-r0.apk .
-
+- docker build -t alpine-oftr -f Dockerfile .
+- docker run --name build-oftr alpine-oftr
+- docker ps -a
+- docker cp build-oftr:/build-src/output/oftr-0.50.0-r0.apk .
 deploy:
   provider: releases
   api_key:
-    secure: <your key>
+    secure: NwKjVSxtaKAIoCCB8shwpQgS/D/Tn7A653YqRT3BQrgXfEnR6JJ1KghSY2cpl2bp5TfiVbKflJELnZyJlvqThM9M3UPmKznu8tYN+1AJ9Ys5cOp5IiIm+ZrRydSqeqTfCGYRMnOSg0Tfe6ofU3h+UBIPxVcctwvA5MKtMOZrdjFKv9oKXJPohGRDSUNSL+bEEH2E6jFdRXFLwYebeSGBFZ5vBsCswjpXPctsIaKe4un2xDrRYoCgY+tfkeg/gxn8IYl4Mi0nN58Kqgq8FdcHjLtgzbJtTRDlDYB85sWWYD6n79AsFnr0Gdd3cxKrpG+B1awFEr+JKCea2bCyxchcZBt3R22d0PmC4KQYLiz1WAIprmpjTbge7I85xMWb0AoVmKbzrVWoW9yj+3vS/jODnE3KtdnhvwpBrK/OjSvPRvsmNvs06t/CdEgQ7LaxJ6TCwRrWTJT+7Tg0nOgtBBbHCtUpJC+qDJfxmOGFVl5MiqlsFWwj8pVblFQYKHHC/izc3h/ZZ45H7Kril5bRXa7CGT0NcvE0zH72CZ8ySHi+0J6aBh2G0IR85hwx/OjbBQGN6h3DRZc7v9nXnpPIUrOvUIlbSP1zDhIJnHu+9ZN/BGOtRZv5nwur96O5gyJvi2B+SGCvmjAd5B4D23iu1qZayLgeTneZ+OFfBMHnm36YlDI=
   file: oftr-0.50.0-r0.apk
   skip_cleanup: true
   on:
-      repo: byllyfish/alpine-oftr
-      tags: true
+    repo: byllyfish/alpine-oftr
+
