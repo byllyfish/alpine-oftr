@@ -5,7 +5,7 @@
 set -e
 set -u
 
-ARCH=$(uname -p)
+ARCH=$(uname -m)
 
 # Install the alpine-sdk.
 
@@ -33,8 +33,8 @@ cp /build-src/APKBUILD .
 
 abuild-keygen -a -n
 
-# Optionally update the checksum in the APKBUILD file?
-#abuild checksum
+# Update the checksum in the APKBUILD file.
+abuild checksum
 
 # Build the package.
 
