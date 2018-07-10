@@ -5,6 +5,8 @@
 set -e
 set -u
 
+ARCH=$(uname -p)
+
 # Install the alpine-sdk.
 
 apk update
@@ -42,3 +44,8 @@ EOF
 
 # The resulting packages are stored in "/home/build/packages/home/$ARCH/*.apk"
 # We ignore the index file named "APKINDEX.tar.gz".
+
+mkdir /build-src/output
+cp /home/build/packages/home/$ARCH/*.apk /build-src/output
+
+exit 0

@@ -4,4 +4,4 @@ FROM alpine:3.7
 
 COPY ./ /build-src/
 
-RUN /build-src/build.sh
+CMD /build-src/build.sh
