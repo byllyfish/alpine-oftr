@@ -1,11 +1,14 @@
 sudo: required
-language: ruby
+language: ruby   # default
+
 services:
-- docker
+  - docker
+
 script:
-- docker build -t alpine-oftr -f Dockerfile .
-- docker run --name build-oftr -e "OFTR_VERSION=$TRAVIS_TAG" alpine-oftr
-- docker cp build-oftr:/build-src/output .
+  - docker build -t alpine-oftr -f Dockerfile .
+  - docker run --name build-oftr -e "OFTR_VERSION=$TRAVIS_TAG" alpine-oftr
+  - docker cp build-oftr:/build-src/output .
+
 deploy:
   provider: releases
   api_key:
@@ -16,3 +19,8 @@ deploy:
   on:
     repo: byllyfish/alpine-oftr
     tags: true
+
+# Only tagged releases with version numbers.
+branches:
+  only:
+    - /^\d+\..*$/
