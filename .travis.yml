@@ -1,0 +1,22 @@
+sudo: required
+
+language: ruby    # default (travis lint)
+
+services:
+  - docker
+
+script:
+  - docker build -t alpine-oftr -f Dockerfile .
+  - docker run --name build-oftr alpine-oftr
+  - docker ps -a
+  - docker cp build-oftr:/build-src/output/oftr-0.50.0-r0.apk .
+
+deploy:
+  provider: releases
+  api_key:
+    secure: <your key>
+  file: oftr-0.50.0-r0.apk
+  skip_cleanup: true
+  on:
+      repo: byllyfish/alpine-oftr
+      tags: true
