@@ -1,7 +1,7 @@
 # Contributor: Bill Fisher <william.w.fisher@gmail.com>
 # Maintainer: Bill Fisher <william.w.fisher@gmail.com>
 pkgname=oftr
-pkgver="0.50.0"
+pkgver="${OFTR_VERSION:-0.50.0}"
 pkgrel=0
 pkgdesc="OpenFlow to YAML Translator and Microservice"
 url="https://github.com/byllyfish/oftr"
@@ -11,7 +11,7 @@ depends="libgcc libstdc++ libpcap"
 makedepends="cmake go perl python libpcap-dev linux-headers bash"
 install=""
 subpackages="$pkgname-doc"
-source="https://launchpad.net/~byllyfish/+archive/ubuntu/oftr/+files/oftr_0.50.0.orig.tar.gz"
+source="https://launchpad.net/~byllyfish/+archive/ubuntu/oftr/+files/oftr_${pkgver}.orig.tar.gz"
 builddir="$srcdir/$pkgname-$pkgver"
 
 build() {

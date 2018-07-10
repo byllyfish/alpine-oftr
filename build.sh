@@ -7,6 +7,13 @@ set -u
 
 ARCH=$(uname -m)
 
+if [ -z ${OFTR_VERSION+x} ]; then
+    echo "OFTR_VERSION environment variable is not set."
+    exit 1
+fi
+
+echo "Building ${ARCH} alpine package for oftr-${OFTR_VERSION}"
+
 # Install the alpine-sdk.
 
 apk update
@@ -27,13 +34,12 @@ sudo -H -u build /bin/sh <<EOF
 cd /home/build
 cp /build-src/APKBUILD .
 
-# Generate a disposable public/private key pair. The private
-# key will be used to sign the APKINDEX, but we throw away that
-# artifact.
+# Generate a disposable public/private key pair.
 
 abuild-keygen -a -n
 
 # Update the checksum in the APKBUILD file.
+
 abuild checksum
 
 # Build the package.
