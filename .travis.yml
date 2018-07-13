@@ -23,4 +23,4 @@ deploy:
 # Only tagged releases with version numbers.
 branches:
   only:
-    - /^\d+\..*$/
+    - /^\d+\.\d+\.\d+$/

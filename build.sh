@@ -5,19 +5,20 @@
 set -e
 set -u
 
-ARCH=$(uname -m)
-
 if [ -z ${OFTR_VERSION+x} ]; then
     echo "OFTR_VERSION environment variable is not set."
     exit 1
 fi
 
-echo "Building ${ARCH} alpine package for oftr-${OFTR_VERSION}"
-
 # Install the alpine-sdk.
 
 apk update
 apk add alpine-sdk
+
+# Determine architecture.
+
+ARCH=$(abuild -A)
+echo "Building ${ARCH} alpine package for oftr-${OFTR_VERSION}"
 
 # Create the 'build' user and add it to the 'abuild' group. Make sure
 # it has read/write access to /var/cache/distfiles. We also need to
@@ -49,9 +50,11 @@ abuild -r
 EOF
 
 # The resulting packages are stored in "/home/build/packages/home/$ARCH/*.apk"
-# We ignore the index file named "APKINDEX.tar.gz".
 
-mkdir /build-src/output
-cp /home/build/packages/home/$ARCH/*.apk /build-src/output
+PKG_DIR="/home/build/packages/home/$ARCH"
+OUT_DIR="/build-src/output"
+
+mkdir "$OUT_DIR"
+cp $PKG_DIR/*.apk "$OUT_DIR"
 
 exit 0
