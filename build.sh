@@ -24,8 +24,7 @@ echo "Building ${ARCH} alpine package for oftr-${OFTR_VERSION}"
 # it has read/write access to /var/cache/distfiles. We also need to
 # add 'build' to /etc/sudoers.
 
-adduser -D build
-addgroup build abuild
+adduser -G abuild -D build
 chmod a+w /var/cache/distfiles
 echo 'build ALL=(ALL) NOPASSWD: ALL' | EDITOR='tee -a' visudo
 
