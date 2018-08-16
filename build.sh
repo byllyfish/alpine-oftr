@@ -34,9 +34,13 @@ sudo -H -u build /bin/sh <<EOF
 cd /home/build
 cp /build-src/APKBUILD .
 
-# Generate a disposable public/private key pair.
+# Prepare private key for signing.
 
-abuild-keygen -a -n
+openssl aes-256-cbc -K $encrypted_16f110ae354d_key -iv $encrypted_16f110ae354d_iv \
+    -in /build-src/oftr-5b74d058.rsa.enc -out oftr-5b74d058.rsa -d
+
+mkdir .abuild
+echo "PACKAGER_PRIVKEY=$HOME/oftr-5b74d058.rsa" > .abuild/abuild.conf
 
 # Update the checksum in the APKBUILD file.
 
