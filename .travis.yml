@@ -5,11 +5,7 @@ services:
 
 script:
   - docker build -t alpine-oftr -f Dockerfile .
-  - docker run --name build-oftr \
-               -e "OFTR_VERSION=$TRAVIS_TAG" \
-               -e encrypted_16f110ae354d_key \
-               -e encrypted_16f110ae354d_iv \
-               alpine-oftr
+  - docker run --name build-oftr -e "OFTR_VERSION=$TRAVIS_TAG" -e encrypted_16f110ae354d_key -e encrypted_16f110ae354d_iv alpine-oftr
   - docker cp build-oftr:/build-src/output .
 
 deploy:
