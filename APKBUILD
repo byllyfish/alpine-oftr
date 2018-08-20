@@ -1,7 +1,7 @@
 # Contributor: Bill Fisher <william.w.fisher@gmail.com>
 # Maintainer: Bill Fisher <william.w.fisher@gmail.com>
 pkgname=oftr
-pkgver="${OFTR_VERSION}"
+pkgver="OFTR_VERSION"
 pkgrel=0
 pkgdesc="OpenFlow to YAML Translator and Microservice"
 url="https://github.com/byllyfish/oftr"

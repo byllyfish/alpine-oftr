@@ -35,7 +35,7 @@ cd /home/build
 
 # Prepare the APKBUILD file.
 
-sed "s/\${OFTR_VERSION}/${OFTR_VERSION}/" /build-src/APKBUILD > APKBUILD
+sed "s/OFTR_VERSION/${OFTR_VERSION}/" /build-src/APKBUILD > APKBUILD
 
 # Prepare private key for signing.
 
