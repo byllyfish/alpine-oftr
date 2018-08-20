@@ -30,9 +30,12 @@ echo 'build ALL=(ALL) NOPASSWD: ALL' | EDITOR='tee -a' visudo
 
 # Switch to the build user.
 
-sudo -H -u build /bin/sh <<EOF
+sudo -u build /bin/sh <<EOF
 cd /home/build
-cp /build-src/APKBUILD .
+
+# Prepare the APKBUILD file.
+
+sed "s/\${OFTR_VERSION}/${OFTR_VERSION}/" /build-src/APKBUILD > APKBUILD
 
 # Prepare private key for signing.
 
