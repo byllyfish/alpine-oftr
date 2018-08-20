@@ -1,7 +1,0 @@
-## Image name: byllyfish/alpine-oftr-pi
-
-FROM multiarch/alpine:armhf-v3.7
-
-COPY ./ /build-src/
-
-CMD /build-src/build.sh
